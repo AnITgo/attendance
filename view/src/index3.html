@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
+    <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+		<title><?php echo $title; ?></title>
+		<link type="text/css" rel="stylesheet" href="./assets/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="./assets/css/bootstrap-select.css"/>
+    <link type="text/css" rel="stylesheet" href="./assets/css/question-content.css"/>
+    <link type="text/css" rel="stylesheet" href="./assets/js/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.css"/>
+
+    <script type="text/javascript" src="./assets/js/jquery.js"></script>
+    <script type="text/javascript" src="./assets/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="./assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="./assets/js/messages_cn.js"></script>
+
+    <script type="text/javascript" src="./assets/js/bootstrap-select.js"></script>
+
+	</head>
+<body>
+		
+<div class="navbar navbar-inverse">
+	<div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">管理员</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-inverse-collapse">
+    <ul class="nav navbar-nav">
+      <li id="main_page_li"><a href="<?php echo site_url('admin_home/index')?>">主页</a></li>
+      <li id="staff_li"><a href="<?php echo site_url('admin_staff/index')?>">员工</a></li>
+      <li id="vacation_li"><a href="<?php echo site_url('admin_vacation_type/index')?>">假期类型</a></li>
+      <li id="overtime_li"><a href="<?php echo site_url('admin_overtime_type/index')?>">加班类型</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><?php echo $this->session->userdata('o_username')?> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <!-- <li><a href="#">修改密码</a></li> -->
+          <li><a href="<?php echo site_url('admin_home/change_password') ?>">修改密码</a></li>
+          <li><a href="<?php echo site_url('admin_home/logout') ?>">退出</a></li>
+        </ul>
+      </li>
+
+    </ul>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $().ready(function(){
+    $("#main_page_li").addClass("active");    
+  });
+
+	function delete_item(id)
+	{
+		if(confirm("删除后不可恢复，确定吗？"))
+			location.href="<?php echo site_url('admin_department/department_delete').'/'?>"+id;
+	}
+</script>
+<div class="container">
+	<div class="col-md-3">
+		<div class="panel panel-primary">
+	  		<div class="panel-heading">
+	    		<h3 class="panel-title">系统信息</h3>
+	  		</div>
+	 		 <div class="panel-body">
+	    		<div class="row form-group" style="border-bottom:1px ridge;">
+			      <label  class="col-lg-8 col-xs-6 control-label">部门：</label>
+			      <div class="col-lg-4 col-xs-6">
+			      		<label  class="ontrol-label"><?=$department_count?></label>
+			      </div>
+			    </div>
+			    <div class="row form-group" style="border-bottom:1px ridge;">
+			      <label  class="col-lg-8 col-xs-6 control-label">项目组：</label>
+			      <div class="col-lg-4 col-xs-6">
+			      		<label  class="ontrol-label"><?=$project_team_count?></label>
+			      </div>
+			    </div>
+			    <div class="row form-group" style="border-bottom:1px ridge;">
+			      <label  class="col-lg-8 col-xs-6 control-label">员工：</label>
+			      <div class="col-lg-4 col-xs-6">
+			      		<label  class="ontrol-label"><?=$staff_count?></label>
+			      </div>
+			    </div> 
+			    <div class="row form-group" style="border-bottom:1px ridge;">
+			      
+			      <div class="col-lg-4 col-lg-offset-1 col-xs-5 col-xs-offset-1">
+			      		<a href="<?php echo site_url('admin_home/start_punch_card_record')?>" class="btn btn-primary " target="_blank">
+									上班打卡
+								</a>
+			      </div>
+			      <div class="col-lg-4 col-lg-offset-1 col-xs-6">
+			      		<a href="<?php echo site_url('admin_home/end_punch_card_record')?>" class="btn btn-primary " target="_blank">
+									下班打卡
+								</a>
+			      </div>
+			    </div>  
+	  		</div>
+		</div>
+	</div>
+ 	<div class="col-md-9">
+		
+		<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">当前的部门</h3>
+		</div>
+		<div class="panel-body">
+			<div id="table"  class="table-responsive">
+				<table class="table table-striped table-hover ">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>名称</th>
+							
+							<th>操作</th>
+							<th></th>
+							<th>
+								<a href="<?php echo site_url('admin_department/department_add')?>" class="btn btn-primary ">
+									添加
+								</a>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $index=1; ?>
+						<?php foreach ($departments as $item ): ?>
+						<tr>
+							<td>
+								<?php echo $index++ ;?></td>
+							<td>
+								<?php echo $item['name']?></td>
+							<td>
+								<a href="<?php echo site_url('admin_department/department_check').'/'.$item['id']?>">查看</a>
+							</td>
+							<td>
+								<a href="<?php echo site_url('admin_department/department_edit').'/'.$item['id']?>">编辑</a>
+							</td>
+							<td>
+								<a onclick="delete_item(<?=$item['id']?>)" href="#">删除</a>
+							</td>
+						</tr>
+						<?php endforeach; ?></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	</div>
+</div>
+
+
+
+	</body>
+</html>
+
+<!-- 引用显示公式的工具包 -->
+<script type="text/javascript" src="./assets/MathJax/MathJax.js"></script> 
+<script type="text/javascript" src="./assets/MathJax/config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<!-- 配置不使用图片字体，不兼容古老浏览器 -->
+<script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            "HTML-CSS": {
+                scale: 85,
+                imageFont: null
+            }
+        });
+</script>
