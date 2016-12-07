@@ -1,0 +1,47 @@
+
+<div class="container">
+		<div class="col-md-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">系统信息</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row form-group" style="border-bottom:1px ridge;">
+						<label  class="col-lg-8 col-xs-6 control-label">部门：</label>
+						<div class="col-lg-4 col-xs-6">
+							<label  class="ontrol-label"><?=$department_count?></label>
+						</div>
+					</div>
+					<div class="row form-group" style="border-bottom:1px ridge;">
+						<label  class="col-lg-8 col-xs-6 control-label">项目组：</label>
+						<div class="col-lg-4 col-xs-6">
+							<label  class="ontrol-label"><?=$project_team_count?></label>
+						</div>
+					</div>
+					<div class="row form-group" style="border-bottom:1px ridge;">
+						<label  class="col-lg-8 col-xs-6 control-label">员工：</label>
+						<div class="col-lg-4 col-xs-6">
+							<label  class="ontrol-label"><?=$staff_count?></label>
+						</div>
+					</div> 
+					<div class="row form-group" style="border-bottom:1px ridge;">
+						
+						<div class="col-lg-4 col-lg-offset-1 col-xs-5 col-xs-offset-1">
+							<a href="<?php echo site_url('admin_home/start_punch_card_record')?>" class="btn btn-primary " target="_blank">
+								上班打卡
+							</a>
+						</div>
+						<div class="col-lg-4 col-lg-offset-1 col-xs-6">
+							<a href="<?php echo site_url('admin_home/end_punch_card_record')?>" class="btn btn-primary " target="_blank">
+								下班打卡
+							</a>
+						</div>
+					</div>  
+				</div>
+			</div>
+		</div>
+
+
+<p>
+  admin-info works!
+</p>
