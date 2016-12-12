@@ -1,47 +1,83 @@
-
-<div class="container">
-		<div class="col-md-3">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">系统信息</h3>
+<div class="col-md-4">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">个人信息</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row form-group" style="border-bottom:1px ridge;">
+				<label  class="col-lg-5 col-xs-4 control-label">姓名：</label>
+				<div class="col-lg-7 col-xs-8">
+					<label  class="ontrol-label"><?=$staff['name']?></label>
 				</div>
-				<div class="panel-body">
-					<div class="row form-group" style="border-bottom:1px ridge;">
-						<label  class="col-lg-8 col-xs-6 control-label">部门：</label>
-						<div class="col-lg-4 col-xs-6">
-							<label  class="ontrol-label"><?=$department_count?></label>
-						</div>
-					</div>
-					<div class="row form-group" style="border-bottom:1px ridge;">
-						<label  class="col-lg-8 col-xs-6 control-label">项目组：</label>
-						<div class="col-lg-4 col-xs-6">
-							<label  class="ontrol-label"><?=$project_team_count?></label>
-						</div>
-					</div>
-					<div class="row form-group" style="border-bottom:1px ridge;">
-						<label  class="col-lg-8 col-xs-6 control-label">员工：</label>
-						<div class="col-lg-4 col-xs-6">
-							<label  class="ontrol-label"><?=$staff_count?></label>
-						</div>
-					</div> 
-					<div class="row form-group" style="border-bottom:1px ridge;">
-						
-						<div class="col-lg-4 col-lg-offset-1 col-xs-5 col-xs-offset-1">
-							<a href="<?php echo site_url('admin_home/start_punch_card_record')?>" class="btn btn-primary " target="_blank">
-								上班打卡
-							</a>
-						</div>
-						<div class="col-lg-4 col-lg-offset-1 col-xs-6">
-							<a href="<?php echo site_url('admin_home/end_punch_card_record')?>" class="btn btn-primary " target="_blank">
-								下班打卡
-							</a>
-						</div>
-					</div>  
+			</div>
+			<div class="row form-group" style="border-bottom:1px ridge;">
+				<label  class="col-lg-5 col-xs-4 control-label">工号：</label>
+				<div class="col-lg-7 col-xs-8">
+					<label  class="ontrol-label"><?=$staff['job_number']?></label>
+				</div>
+			</div>
+
+			<div class="row form-group" style="border-bottom:1px ridge;">
+				<label  class="col-lg-5 col-xs-4 control-label">年假：</label>
+				<div class="col-lg-7 col-xs-8">
+					<label  class="ontrol-label"><?=$staff['annual_vacation']?></label>
+				</div>
+			</div>   
+			<div class="row form-group" style="border-bottom:1px ridge;">
+				<label  class="col-lg-5 col-xs-4 control-label">邮箱：</label>
+				<div class="col-lg-7 col-xs-8">
+					<label  class="ontrol-label"><?=$staff['email']?></label>
+				</div>
+			</div>           
+
+			<div class="row form-group" style="border-bottom:1px ridge;">
+				<label  class="col-lg-5 col-xs-4 control-label">身份：</label>
+				<div class="col-lg-7 col-xs-8">
+					<label  class="ontrol-label">总经理</label>
+
+				</div>
+			</div>
+			<div class="row form-group" style="border-bottom:1px ridge;">
+				<label  class="col-lg-5 col-xs-4 control-label">部门：</label>
+				<div class="col-lg-7 col-xs-8">
+					<label  class="ontrol-label"><?=$staff['department_name']?></label>
+				</div>
+			</div>
+			<div class="row form-group" style="border-bottom:1px ridge;">
+				<label  class="col-lg-5 col-xs-4 control-label">项目组：</label>
+				<div class="col-lg-7 col-xs-8">
+					<label  class="ontrol-label"><?=$staff['project_team_name']?></label>
+				</div>
+			</div>
+			<div class="row form-group" style="border-bottom:1px ridge;">
+				<label  class="col-lg-5 col-xs-4 control-label">基本工资：</label>
+				<div class="col-lg-7 col-xs-8">
+					<label  class="ontrol-label"><?=$staff['basic_salary']?></label>
+				</div>
+			</div>
+			<div class="row form-group" style="border-bottom:1px ridge;">
+				<label  class="col-lg-5 col-xs-4 control-label">出生年份：</label>
+				<div class="col-lg-7 col-xs-8">
+					<label  class="ontrol-label"><?=$staff['birthdate']?></label>
+				</div>
+			</div>
+			<div class="row form-group" style="border-bottom:1px ridge;">
+				<label  class="col-lg-5 col-xs-4 control-label">上班时间：</label>
+				<div class="col-lg-7 col-xs-8">
+					<label  class="ontrol-label"><?=$punch_card_record['start_time']?></label>
+				</div>
+			</div>
+			<div class="row form-group" style="border-bottom:1px ridge;">
+				<label  class="col-lg-1 col-xs-2 control-label"></label>
+				<div class="col-lg-9 col-lg-offset-2 col-xs-8 col-lg-offset-2">
+					<label  class="ontrol-label">今天未打卡</label>
+				</div>
+			</div>
+			<div class="row form-group" style="border-bottom:1px ridge;">
+
+				<div class="col-lg-12 col-xs-12">
+					<a href="<?php echo site_url('staff_home/select_staff')?>"class="btn btn-primary btn-block">导出报表</a>
 				</div>
 			</div>
 		</div>
-
-
-<p>
-  admin-info works!
-</p>
+	</div>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
+    <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+		<title>登录</title>
+		<link type="text/css" rel="stylesheet" href="./assets/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="./assets/css/bootstrap-select.css"/>
+    <link type="text/css" rel="stylesheet" href="./assets/css/question-content.css"/>
+
+    <script type="text/javascript" src="./assets/js/jquery.js"></script>
+    <script type="text/javascript" src="./assets/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="./assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="./assets/js/messages_cn.js"></script>
+
+    <script type="text/javascript" src="./assets/js/bootstrap-select.js"></script>
+
+    <link rel="stylesheet" href="./assets/js/jqueryui/jquery-ui.min.css">
+  <script src="./assets/js/jqueryui/jquery.min.js"></script>
+  <script src="./assets/js/jqueryui/jquery-ui.min.js"></script>
+   <link rel="./assets/js/jqueryui/style.css">
+	</head>
+<body>
+  <div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">添加假期类型</h3>
+    </div>
+    <div class="panel-body">
+      <?php echo validation_errors(); ?>
+      <form id="vacation_type_add_form" method="post" class="form-horizontal"  enctype="multipart/form-data" action="<?php echo site_url('admin_vacation_type/add')?>" >
+        <fieldset>
+          <div class="form-group">
+            <label class="col-lg-2 col-xs-4 control-label">名称:</label>
+            <div class="col-lg-8 col-xs-8">
+              <input class="form-control" id="name" name="name"/>
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 col-xs-4 control-label">建议天数:</label>
+            <div class="col-lg-8 col-xs-8">
+              <input class="form-control" id="days" name="days"/>
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 col-xs-4 control-label">工资计算:</label>
+            <div class="col-lg-8 col-xs-8">
+              <input class="form-control" id="salary_times" name="salary_times"/>
+            </div>
+
+          </div>
+          
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2 col-xs-4 col-xs-offset-4">
+              <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

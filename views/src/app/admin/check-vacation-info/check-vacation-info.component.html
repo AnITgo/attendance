@@ -1,0 +1,139 @@
+<div class="col-md-4">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+          	<h3 class="panel-title">申请者信息</h3>
+        </div>
+       	<div class="panel-body">
+          	<div class="row form-group" style="border-bottom:1px ridge;">
+            	<label  class="col-lg-5 col-xs-4 control-label">姓名：</label>
+            	<div class="col-lg-7 col-xs-8">
+                	<label  class="ontrol-label"><?=$staff['name']?></label>
+            	</div>
+          	</div>
+          	<div class="row form-group" style="border-bottom:1px ridge;">
+            	<label  class="col-lg-5 col-xs-4 control-label">工号：</label>
+            	<div class="col-lg-7 col-xs-8">
+                	<label  class="ontrol-label"><?=$staff['job_number']?></label>
+            	</div>
+          	</div>
+         	<div class="row form-group" style="border-bottom:1px ridge;">
+            	<label  class="col-lg-5 col-xs-4 control-label">身份：</label>
+            	<div class="col-lg-7 col-xs-8">
+                	<label  class="ontrol-label">总经理</label>
+            	</div>
+          	</div>          
+           	<div class="row form-group" style="border-bottom:1px ridge;">
+            	<label  class="col-lg-5 col-xs-4 control-label">年假：</label>
+            	<div class="col-lg-7 col-xs-8">
+                	<label  class="ontrol-label"><?=$staff['annual_vacation']?></label>
+            	</div>
+          	</div>   
+           	<div class="row form-group" style="border-bottom:1px ridge;">
+           	 	<label  class="col-lg-5 col-xs-4 control-label">邮箱：</label>
+            	<div class="col-lg-7 col-xs-8">
+                	<label  class="ontrol-label"><?=$staff['email']?></label>
+            	</div>
+          	</div>
+          	<div class="row form-group" style="border-bottom:1px ridge;">
+            	<label  class="col-lg-5 col-xs-4 control-label">部门：</label>
+            	<div class="col-lg-7 col-xs-8">
+                	<label  class="ontrol-label"><?=$department['name']?></label>
+            	</div>
+          	</div>
+           	<div class="row form-group" style="border-bottom:1px ridge;">
+            	<label  class="col-lg-5 col-xs-4 control-label">项目组：</label>
+            	<div class="col-lg-7 col-xs-8">
+                	<label  class="ontrol-label"><?=$project_team['name']?></label>
+            	</div>
+          	</div>
+           	<div class="row form-group" style="border-bottom:1px ridge;">
+            	<label  class="col-lg-5 col-xs-4 control-label">出生年份：</label>
+            	<div class="col-lg-7 col-xs-8">
+                	<label  class="ontrol-label"><?=$staff['birthdate']?></label>
+            	</div>
+          	</div>
+          	<div class="row form-group" style="border-bottom:1px ridge;">
+            	<label  class="col-lg-5 col-xs-4 control-label">基本工资：</label>
+            	<div class="col-lg-7 col-xs-8">
+                	<label  class="ontrol-label"><?=$staff['basic_salary']?></label>
+            	</div>
+          	</div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-8">
+  	<div class="panel panel-primary">
+    	<div class="panel-heading">
+     		<h3 class="panel-title">请假申请详情</h3>
+    	</div>
+    	<div class="panel-body">
+      		<fieldset>
+          	<div class="form-group row">
+            	<label class="col-lg-3 col-xs-5 control-label">请假类型:</label>
+            	<div class="col-lg-9 col-xs-7">
+              		<p class="question-content"><?=$vacation_apply['vacation_type']?> </p>
+            	</div>
+          	</div>
+
+          	<div class="form-group row">
+           	 	<label class="col-lg-3 col-xs-5 control-label">开始日期:</label>
+              	<div class="col-lg-9 col-xs-7">
+                	<p class="text-primary question-content"><?=$vacation_apply['start_date']?></p> 
+              	</div>
+          	</div>
+          	<div class="form-group row">
+            	<label class="col-lg-3 col-xs-5 control-label">结束日期:</label>
+            	<div class="col-lg-9 col-xs-7">
+              		<p class="text-primary question-content"><?=$vacation_apply['end_date']?></p>
+              	</div>
+          	</div>
+          	<div class="form-group row">
+            	<label class="col-lg-3 col-xs-5 control-label">工资计算:</label>
+            	<div class="col-lg-9 col-xs-7">
+              		<p class="text-primary question-content"><?=$vacation_apply['salary_times']?></p>
+              	</div>
+          	</div>
+          	<div class="form-group row">
+            	<label class="col-lg-3 col-xs-5 control-label">申请人备注:</label>
+            	<div class="col-lg-9 col-xs-7">
+              		<p class="text-primary question-content"><?=$vacation_apply['remark']?></p>
+              	</div>
+          	</div>
+          	<div class="form-group row">
+            	<label class="col-lg-3 col-xs-5 control-label">部门经理备注:</label>
+            	<div class="col-lg-9 col-xs-7">
+              		<p class="text-primary question-content"><?=$vacation_apply['department_manager_remark']?></p>
+              	</div>
+          	</div>
+          	<div class="form-group row">
+            	<label class="col-lg-3 col-xs-5 control-label">副总经理备注:</label>
+            	<div class="col-lg-9 col-xs-7">
+              		<p class="text-primary question-content"><?=$vacation_apply['vice_manager_remark']?></p>
+            	</div>
+          	</div>
+        	</fieldset>
+
+        	<form id="vacation_apply_form" method="post" class="form-horizontal"  enctype="multipart/form-data" action="<?php echo site_url('approval/deal_vacation_apply')?>" >
+        		<fieldset>
+          		<input type="text" id="vacation_apply_id" name="vacation_apply_id" value="<?=$vacation_apply['id']?>" class="hidden">
+         		<div class="form-group">
+            		<label class="col-lg-3 col-xs-5 control-label">备注:</label>
+            		<div class="col-lg-9 col-xs-7">
+              			<input class="form-control" id="remark" name="remark"/>
+            		</div>
+          		</div>
+          
+          		<div class="form-group">
+            		<div class="col-lg-2 col-lg-offset-1 col-xs-offset-1 col-xs-5">
+              			<button type="submit" value="1" name="state" class="btn btn-primary">同意</button>
+            		</div>
+            		<div class="col-lg-2 col-xs-5">
+              			<button type="submit" value="2" name="state" class="btn btn-primary">不同意</button>
+            		</div>
+          		</div>
+        		</fieldset>
+      		</form>
+    	</div>
+	</div>
+</div>

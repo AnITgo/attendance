@@ -12,9 +12,9 @@
 			<div class="navbar-collapse collapse navbar-inverse-collapse">
 				<ul class="nav navbar-nav">
 					<li id="main_page_li"><a href="<?php echo site_url('admin_home/index')?>">主页</a></li>
-					<li id="staff_li"><a href="<?php echo site_url('admin_staff/index')?>">员工</a></li>
-					<li id="vacation_li"><a href="<?php echo site_url('admin_vacation_type/index')?>">假期类型</a></li>
-					<li id="overtime_li"><a href="<?php echo site_url('admin_overtime_type/index')?>">加班类型</a></li>
+					<li id="staff_li"><a href="<?php echo site_url('admin_staff/index')?>">审批请假</a></li>
+					<li id="vacation_li"><a href="<?php echo site_url('admin_vacation_type/index')?>">添加请假类型</a></li>
+					
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -33,4 +33,12 @@
 		</div>
 	</div>
 
-<app-admin-info></app-admin-info>
+<div class="container">
+
+	<!-- <app-admin-info></app-admin-info> -->
+	<!-- <app-check-vacation></app-check-vacation> -->
+	<!-- <app-check-vacation-info></app-check-vacation-info> -->
+	<app-add-vacation-type></app-add-vacation-type>
+	
+</div>
+

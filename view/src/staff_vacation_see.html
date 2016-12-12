@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
+    <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+		<title>登录</title>
+		<link type="text/css" rel="stylesheet" href="./assets/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="./assets/css/bootstrap-select.css"/>
+    <link type="text/css" rel="stylesheet" href="./assets/css/question-content.css"/>
+
+    <script type="text/javascript" src="./assets/js/jquery.js"></script>
+    <script type="text/javascript" src="./assets/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="./assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="./assets/js/messages_cn.js"></script>
+
+    <script type="text/javascript" src="./assets/js/bootstrap-select.js"></script>
+
+    <link rel="stylesheet" href="./assets/js/jqueryui/jquery-ui.min.css">
+  <script src="./assets/js/jqueryui/jquery.min.js"></script>
+  <script src="./assets/js/jqueryui/jquery-ui.min.js"></script>
+   <link rel="./assets/js/jqueryui/style.css">
+	</head>
+<body>
+  <div class="container">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<ul class="nav nav-tabs">
+			  <li id="vacation_tab_li"><a href="#vacation_tab" data-toggle="tab" aria-expanded="true">请假</a></li>
+			  <li id="overtime_tab_li"><a href="#overtime_tab" data-toggle="tab" aria-expanded="true">加班</a></li>
+			  <li id="business_tab_li"><a href="#business_tab" data-toggle="tab" aria-expanded="true">出差</a></li>
+			  <li id="punch_card_tab_li"><a href="#punch_card_tab" data-toggle="tab" aria-expanded="true">考勤</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade" id="vacation_tab">
+					<div id="table"  class="table-responsive">
+						<table id="vactionTable" class="table table-striped table-hover ">
+							
+						<thead>
+						<tr>
+							<th>类型</th>
+							<th>开始日期</th>
+							<th>结束日期</th>
+							<th>结果</th>
+							<th>工资计算</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $index=1; ?>
+						<?php foreach ($vacation_apply as $item ): ?>
+						<tr>
+							<td>
+								<?php $index++ ;echo $item['vacation_type']?></td>
+							<td>
+								<?php echo $item['start_date']?></td>
+							<td>
+								<?php echo $item['end_date']?></td>
+							<td>
+								<?php if($item['department_manager_state']==0&&$item['state']==0) {?>
+									等待部门经理审批
+								<?php } ?>
+								<?php if($item['department_manager_state']==1&&$item['vice_manager_state']==0&&$item['state']==0) {?>
+									等待副总经理审批
+								<?php } ?>
+								<?php if($item['department_manager_state']==1&&$item['vice_manager_state']==1&&$item['general_manager_state']==0&&$item['state']==0) {?>
+									等待总经理审批
+								<?php } ?>
+								<?php if($item['state']==1&&$item['result']==1) {?>
+									申请成功
+								<?php } ?>
+								<?php if($item['state']==1&&$item['result']==2) {?>
+									申请失败
+								<?php } ?>
+								</td>
+							<td>
+								<?php echo $item['salary_times']?>倍
+							</td>
+							<td>
+								<a onclick="delete_vacation_apply_item(<?=$item['id']?>)" href="#">删除</a>
+							</td>
+						</tr>
+						<?php endforeach; ?></tbody>
+				
+						</table>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="overtime_tab">
+				<div id="table"  class="table-responsive">
+					<table id="overtimeTable" class="table table-striped table-hover ">
+							<thead>
+						<tr>
+							<th>类型</th>
+							<th>开始日期</th>
+							<th>结束日期</th>
+							<th>结果</th>
+							<th>工资计算</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $index=1; ?>
+						<?php foreach ($overtime_apply as $item ): ?>
+						<tr>
+							<td>
+								<?php $index++ ;echo $item['overtime_type']?></td>
+							<td>
+								<?php echo $item['start_date']?></td>
+							<td>
+								<?php echo $item['end_date']?></td>
+							<td>
+								<?php if($item['department_manager_state']==0&&$item['state']==0) {?>
+									等待部门经理审批
+								<?php } ?>
+								<?php if($item['department_manager_state']==1&&$item['vice_manager_state']==0&&$item['state']==0) {?>
+									等待副总经理审批
+								<?php } ?>
+								<?php if($item['department_manager_state']==1&&$item['vice_manager_state']==1&&$item['general_manager_state']==0&&$item['state']==0) {?>
+									等待总经理审批
+								<?php } ?>
+								<?php if($item['state']==1&&$item['result']==1) {?>
+									申请成功
+								<?php } ?>
+								<?php if($item['state']==1&&$item['result']==2) {?>
+									申请失败
+								<?php } ?>
+								</td>
+							<td>
+								<?php echo $item['salary_times']?>倍
+							</td>
+							<td>
+								<a onclick="delete_overtime_apply_item(<?=$item['id']?>)" href="#">删除</a>
+							</td>
+							
+						</tr>
+						<?php endforeach; ?></tbody>
+						</table>
+				</div>
+				</div>
+				<div class="tab-pane fade" id="business_tab">
+				<div id="table"  class="table-responsive">
+					<table id="businesstable" class="table table-striped table-hover ">
+							<thead>
+						<tr>
+							<th>序号</th>
+							<th>开始日期</th>
+							<th>结束日期</th>
+							<th>结果</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $index=1; ?>
+						<?php foreach ($business_apply as $item ): ?>
+						<tr>
+							<td>
+								<?php echo $index++ ;?></td>
+							<td>
+								<?php echo $item['start_date']?></td>
+							<td>
+								<?php echo $item['end_date']?></td>
+							<td>
+								<?php if($item['project_manager_state']==0&&$item['state']==0) {?>
+									等待项目经理审批
+								<?php } ?>
+								<?php if($item['project_manager_state']==1&&$item['department_manager_state']==0&&$item['state']==0) {?>
+									等待部门经理审批
+								<?php } ?>
+								<?php if($item['project_manager_state']==1&&$item['department_manager_state']==1&&$item['vice_manager_state']==0&&$item['state']==0) {?>
+									等待副总经理审批
+								<?php } ?>
+								<?php if($item['project_manager_state']==1&&$item['department_manager_state']==1&&$item['vice_manager_state']==1&&$item['general_manager_state']==0&&$item['state']==0) {?>
+									等待总经理审批
+								<?php } ?>
+								<?php if($item['state']==1&&$item['result']==1) {?>
+									申请成功
+								<?php } ?>
+								<?php if($item['state']==1&&$item['result']==2) {?>
+									申请失败
+								<?php } ?>
+								</td>
+							<td>
+								<a onclick="delete_business_apply_item(<?=$item['id']?>)" href="#">删除</a>
+							</td>
+							
+						</tr>
+						<?php endforeach; ?></tbody>
+						</table>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="punch_card_tab">
+				<div id="table"  class="table-responsive">
+					<table id="punchcardtable" class="table table-striped table-hover ">
+							<thead>
+						<tr>
+							<th>日期</th>
+							<th>上班时间</th>
+							<th>下班时间</th>
+							<th>操作</th>
+							<th>
+								<a href="<?php echo site_url('admin_staff/add_punch_card_record').'/'.$staff['id']?>" class="btn btn-primary ">
+									添加
+								</a>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $index=1; ?>
+						<?php foreach ($punch_card_record as $item ): ?>
+						<tr>
+							<td>
+								<?php $index++ ;echo $item['date']?></td>
+							<td>
+								<?php echo $item['start_time']?></td>
+							<td>
+								<?php echo $item['end_time']?></td>
+							<td>
+								<a href="<?php echo site_url('admin_staff/edit_punch_card_record').'/'.$item['id']?>">
+									编辑
+								</a>
+							</td>
+							<td>
+								<a onclick="delete_punch_card_record_item(<?=$item['id']?>)" href="#">删除</a>
+							</td>
+						</tr>
+						<?php endforeach; ?></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+	  	</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
+    <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+		<title>登录</title>
+		<link type="text/css" rel="stylesheet" href="./assets/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="./assets/css/bootstrap-select.css"/>
+    <link type="text/css" rel="stylesheet" href="./assets/css/question-content.css"/>
+
+    <script type="text/javascript" src="./assets/js/jquery.js"></script>
+    <script type="text/javascript" src="./assets/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="./assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="./assets/js/messages_cn.js"></script>
+
+    <script type="text/javascript" src="./assets/js/bootstrap-select.js"></script>
+
+    <link rel="stylesheet" href="./assets/js/jqueryui/jquery-ui.min.css">
+  <script src="./assets/js/jqueryui/jquery.min.js"></script>
+  <script src="./assets/js/jqueryui/jquery-ui.min.js"></script>
+   <link rel="./assets/js/jqueryui/style.css">
+	</head>
+<body>
+  <div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <ul class="nav nav-tabs">
+      <?php if($this->session->userdata('o_role_id')==4||$this->session->userdata('o_role_id')==5||$this->session->userdata('o_role_id')==6) {?>
+        <li id="vacation_tab_li"><a href="#vacation_tab" data-toggle="tab" aria-expanded="true">请假申请</a></li>
+        <li id="overtime_tab_li"><a href="#overtime_tab" data-toggle="tab" aria-expanded="true">加班申请</a></li>
+        <?php }?>
+        <li id="business_tab_li"><a href="#business_tab" data-toggle="tab" aria-expanded="true">出差申请</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <?php if($this->session->userdata('o_role_id')==4||$this->session->userdata('o_role_id')==5||$this->session->userdata('o_role_id')==6) {?>
+        <div class="tab-pane fade" id="vacation_tab">
+          <div id="table"  class="table-responsive">
+            <table id="vactionTable" class="table table-striped table-hover ">
+              
+            <thead>
+            <tr>
+              <th>部门</th>
+              <th>项目组</th>
+              <th>姓名(工号)</th>
+              <th>类型</th>
+              <th>开始时间</th>
+              <th>结束时间</th>
+              <th>操作</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <?php $index=1; ?>
+            <?php foreach ($vacation_apply_to_approval as $item ): ?>
+            <tr>
+              <td>
+                <?php $index++ ;echo $item['department_name']?></td>
+              <td>
+                <?php echo $item['project_team_name']?></td>
+              <td>
+                <?php echo $item['staff_name']?>(<?php echo $item['job_number']?>)</td>
+              <td>
+                <?php echo $item['vacation_type']?>
+                </td>
+              <td>
+                <?php echo $item['start_date']?>
+              </td>
+              <td>
+                <?php echo $item['end_date']?>
+              </td>
+              <td>
+                <a href="<?php echo site_url('approval/vacation_apply_check').'/'.$item['id']?>" class="btn btn-primary ">
+                  查看
+                </a>
+              </td>
+            </tr>
+            <?php endforeach; ?></tbody>
+        
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="overtime_tab">
+        <div id="table"  class="table-responsive">
+          <table id="overtimeTable" class="table table-striped table-hover ">
+              <thead>
+            <tr>
+              <th>部门</th>
+              <th>项目组</th>
+              <th>姓名(工号)</th>
+              <th>类型</th>
+              <th>开始时间</th>
+              <th>结束时间</th>
+              <th>操作</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <?php $index=1; ?>
+            <?php foreach ($overtime_apply_to_approval as $item ): ?>
+            <tr>
+              <td>
+                <?php $index++ ;echo $item['department_name']?></td>
+              <td>
+                <?php echo $item['project_team_name']?></td>
+              <td>
+                <?php echo $item['staff_name']?>(<?php echo $item['job_number']?>)</td>
+              <td>
+                <?php echo $item['overtime_type']?>
+                </td>
+              <td>
+                <?php echo $item['start_date']?>
+              </td>
+              <td>
+                <?php echo $item['end_date']?>
+              </td>
+              <td>
+                <a href="<?php echo site_url('approval/overtime_apply_check').'/'.$item['id']?>" class="btn btn-primary ">
+                  查看
+                </a>
+              </td>
+            </tr>
+            <?php endforeach; ?></tbody>
+            </table>
+          </div>
+        </div>
+        <?php }?>
+        <div class="tab-pane fade" id="business_tab">
+        <div id="table"  class="table-responsive">
+          <table id="businesstable" class="table table-striped table-hover ">
+              <thead>
+            <tr>
+              <th>部门</th>
+              <th>项目组</th>
+              <th>姓名(工号)</th>
+              <th>开始时间</th>
+              <th>结束时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php $index=1; ?>
+            <?php foreach ($business_apply_to_approval as $item ): ?>
+            <tr>
+              <td>
+                <?php $index++ ;echo $item['department_name']?></td>
+              <td>
+                <?php echo $item['project_team_name']?></td>
+              <td>
+                <?php echo $item['staff_name']?>(<?php echo $item['job_number']?>)</td>
+              <td>
+                <?php echo $item['start_date']?>
+                </td>
+              <td>
+                <?php echo $item['end_date']?>
+              </td>
+              <td>
+                <a href="<?php echo site_url('approval/business_apply_check').'/'.$item['id']?>" class="btn btn-primary ">
+                  查看
+                </a>
+              </td>
+            </tr>
+            <?php endforeach; ?></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+</div>
+</body>
+</html>

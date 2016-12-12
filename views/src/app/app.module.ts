@@ -9,6 +9,13 @@ import { StaffComponent } from './staff/staff.component';
 import { StaffInfoComponent } from './staff/staff-info/staff-info.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminInfoComponent } from './admin/admin-info/admin-info.component';
+import { ApplyVacationComponent } from './staff/apply-vacation/apply-vacation.component';
+import { MyVacationComponent } from './staff/my-vacation/my-vacation.component';
+import { StaffCheckinComponent } from './staff/staff-checkin/staff-checkin.component';
+import { CheckVacationComponent } from './admin/check-vacation/check-vacation.component';
+import { CheckVacationInfoComponent } from './admin/check-vacation-info/check-vacation-info.component';
+import { AddVacationTypeComponent } from './admin/add-vacation-type/add-vacation-type.component';
+import { ChangePasswordComponent } from './login/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +24,14 @@ import { AdminInfoComponent } from './admin/admin-info/admin-info.component';
     StaffComponent,
     StaffInfoComponent,
     AdminComponent,
-    AdminInfoComponent
+    AdminInfoComponent,
+    ApplyVacationComponent,
+    MyVacationComponent,
+    StaffCheckinComponent,
+    CheckVacationComponent,
+    CheckVacationInfoComponent,
+    AddVacationTypeComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
