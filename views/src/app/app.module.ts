@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -16,6 +17,8 @@ import { CheckVacationComponent } from './admin/check-vacation/check-vacation.co
 import { CheckVacationInfoComponent } from './admin/check-vacation-info/check-vacation-info.component';
 import { AddVacationTypeComponent } from './admin/add-vacation-type/add-vacation-type.component';
 import { ChangePasswordComponent } from './login/change-password/change-password.component';
+
+import { AttendanceRoutingModule } from './attendance-routing.module';
 
 @NgModule({
   declarations: [
@@ -36,9 +39,12 @@ import { ChangePasswordComponent } from './login/change-password/change-password
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AttendanceRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: APP_BASE_HREF, useValue: '/' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
