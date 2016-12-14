@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { ChangePasswordComponent } from './login/change-password/change-password.component';
-import { StaffComponent } from './staff/staff.component';
+//import { StaffComponent } from './staff/staff.component';
 import { ApplyVacationComponent } from './staff/apply-vacation/apply-vacation.component';
 import { MyVacationComponent } from './staff/my-vacation/my-vacation.component';
 import { StaffCheckinComponent } from './staff/staff-checkin/staff-checkin.component';
@@ -17,11 +17,10 @@ import { CheckVacationInfoComponent } from './admin/check-vacation-info/check-va
 const routes:Routes = [
 
 {path:'login',component:LoginComponent},
-{path:'changePassword',component:ChangePasswordComponent},
-{path:'staff',component:StaffComponent},
-{path:'admin',component:AdminComponent},
+//{path:'changePassword',component:ChangePasswordComponent},
+//{path:'staff',component:StaffComponent},
+//{path:'admin',component:AdminComponent},
 
-{path:'admin',component:AdminComponent}
 ];
 
 @NgModule({
@@ -29,3 +28,4 @@ const routes:Routes = [
 	exports: [RouterModule]
 })
 export class AttendanceRoutingModule{}
+

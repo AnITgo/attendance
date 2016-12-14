@@ -7,7 +7,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { StaffComponent } from './staff/staff.component';
-import { StaffInfoComponent } from './staff/staff-info/staff-info.component';
+//import { StaffInfoComponent } from './staff/staff-info/staff-info.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminInfoComponent } from './admin/admin-info/admin-info.component';
 import { ApplyVacationComponent } from './staff/apply-vacation/apply-vacation.component';
@@ -25,7 +25,7 @@ import { AttendanceRoutingModule } from './attendance-routing.module';
     AppComponent,
     LoginComponent,
     StaffComponent,
-    StaffInfoComponent,
+    //StaffInfoComponent,
     AdminComponent,
     AdminInfoComponent,
     ApplyVacationComponent,
