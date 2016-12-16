@@ -10,13 +10,14 @@ import {AttendanceService} from '../attendance.service';
 })
 export class LoginComponent implements OnInit {
 
-  model = new User('Dr IQ','Chuck Overstreet');
+  model = new User('waitifsh','test');
   
   submitted = false;
   onSubmit() { 
   	console.log(this.model.password);
   	//this.getUsers();
-  	this.addUser(this.model);
+  	//this.addUser(this.model);
+    this.valiUser(this.model);
   	this.submitted = true; 
   }
 
@@ -28,6 +29,10 @@ export class LoginComponent implements OnInit {
   	this.attendanceService
   	.getUsers()
   	.then(users=>this.users=users);
+  }
+  valiUser(data):void{
+    this.attendanceService
+    .valiUser(data);
   }
   addUser(data):void{
   	this.attendanceService

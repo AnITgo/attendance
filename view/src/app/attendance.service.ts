@@ -7,7 +7,7 @@ import {User} from './user'
 export class AttendanceService {
 
   private headers = new Headers({'Content-Type':'application/json'});
-  private usersUrl = 'http://localhost:3000/users';
+  private usersUrl = 'http://localhost:8080/api/users';
 
   constructor(private http:Http) { }
   getUsers():Promise<User[]>{
@@ -15,6 +15,20 @@ export class AttendanceService {
   		.toPromise()
   		.then(response => response.json() as User[])
   		.catch(this.handleError);
+  }
+
+  valiUser(data){
+    var headers = new Headers();
+       headers.append('Content-Type', 'application/json');
+       this.http.post('http://localhost:8080/api/auth', data, {
+            headers: headers
+            })
+            .map(res => res.json())
+            .subscribe(
+             data => console.log(data),
+             err => this.handleError(err),
+            () => console.log('验证用户 Complete')
+       );
   }
 
   addUser(data){

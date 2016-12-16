@@ -64,7 +64,11 @@ apiRoutes.get('/', function(req, res) {
 
 // 返回所有用户信息
 apiRoutes.get('/users', function(req, res) {
-  User.find({}, function(err, users) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    User.find({}, function(err, users) {
     res.json(users);
   });
 });
@@ -73,7 +77,23 @@ apiRoutes.get('/users', function(req, res) {
 app.use('/api', apiRoutes);
 
 //认证接口
+apiRoutes.all('*',function (req, res, next) {
+res.header('Access-Control-Allow-Origin', '*');
+res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+
+if (req.method == 'OPTIONS') {
+res.send(200); /让options请求快速返回/
+}
+else {
+next();
+}
+});
+
+
 apiRoutes.post('/auth', function(req, res) {
+    console.log("postaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    
 
     // find the user
     User.findOne({
