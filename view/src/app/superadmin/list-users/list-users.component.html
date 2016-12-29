@@ -1,0 +1,95 @@
+<div *ngIf="loginService.hasLogin">
+<div class="col-md-12">
+
+	<!-- <div class="panel panel-primary">
+      	<div class="panel-heading">
+        	<h3 class="panel-title">查询</h3>
+      	</div>
+      	<div class="panel-body">
+      	<form id="users_search_form" method="post" class="form-horizontal"  enctype="multipart/form-data" >
+        	<div class="row">
+          		<div class="col-md-6">            
+            		<div class="form-group">
+              			<label class="col-lg-4 col-xs-2 control-label">部门:</label>
+          				<div class="col-lg-8 col-xs-8">
+            				<select name="users_department_select" id="users_department_select" class="form-control" data-live-search="true"  data-style="btn-primary" onchange="find_project_teams_from_department(this.value)">
+                				<option value="0">--不限--</option>
+                  				<option value=""></option>                    
+            				</select>
+          				</div>
+          				<div class="col-lg-2"></div>
+            		</div>        
+          		</div>
+
+          		<div class="col-md-6">
+            		<div class="form-group">
+              			<label class="col-lg-4 col-xs-2 control-label">工号</label>
+              			<div class="col-lg-8 col-xs-8">
+                      <input class="form-control" id="user_salary_times" name="user_salary_times"  placeholder="请填写工号"/>
+                    </div>
+           			</div>            
+          		</div>
+        	</div>
+        
+
+        	<div class="row">
+
+          		<div class="col-md-6">
+            		<div class="form-group">
+              			<div class="col-lg-10 col-lg-offset-2">
+                			<button type="submit" class="btn btn-primary">查询</button>
+              			</div>
+            		</div>
+          		</div>
+        	</div>
+      		</form>
+    	</div>
+
+	</div> -->
+
+
+	<div class="panel panel-primary">
+      	<div class="panel-heading">
+        	<h3 class="panel-title">用户信息列表</h3>
+      	</div>
+      	<div class="panel-body">
+        	<div id="table" class="table-responsive">
+          		<table class="table table-striped table-hover ">
+            		<thead>
+	              		<tr>
+				            <th>部门</th>
+				            <th>工号</th>
+				            <th>姓名</th>
+				            <th>密码</th>
+				            <th>职位</th>
+				            <th>基础工资</th>
+				            <th>email</th>
+				            <th>操作</th>
+				            <th><button type="submit" (click)=" add(user)" class="btn btn-primary">添加</button></th>
+			            </tr>
+            		</thead>
+            		<tbody>
+                		<tr *ngFor="let user of users">
+                  			<td>{{user.department}}</td>
+                  			<td>{{user.uid}}</td>
+                  			<td>{{user.uname}}</td>
+                  			<td>{{user.password}}</td>
+                  			<td>{{user.userrole}}</td>
+                  			<td>{{user.base_wage}}</td>
+                  			<td>{{user.email}}</td>
+                  			<td>
+                  			<button type="submit" (click)=" edit(user)" class="btn btn-primary">修改</button>
+                  			<button type="submit" (click)=" delete(user)" class="btn btn-primary">删除</button>
+                  			</td>
+
+                      	</tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+

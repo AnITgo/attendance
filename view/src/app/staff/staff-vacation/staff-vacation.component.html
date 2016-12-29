@@ -1,3 +1,4 @@
+<div *ngIf="loginService.hasLogin">
 <div class="col-md-8">
 
 	<div class="panel panel-primary">
@@ -9,28 +10,32 @@
           		<table class="table table-striped table-hover ">
             		<thead>
 	              		<tr>
+                      <th>工号</th>
 		                	<th>类型</th>
 		                	<th>开始日期</th>
 		                	<th>结束日期</th>
 		                	<th>状态</th>
-		                	<th>申请</th>
+		                	<th>备注</th>
 		                	<th></th>
 	              		</tr>
             		</thead>
             		<tbody>
-                		<tr>
-                  			<td></td>
-                  			<td></td>
-                  			<td></td>
-                  			<td></td>
-                  			<td></td>
-                  			<td></td>
-                      	</tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+                		<tr *ngFor="let leave of leaves">
+                  			<td *ngIf="(leave.uid==loginService.user.uid)">{{leave.uid}}</td>
+                  			<td *ngIf="(leave.uid==loginService.user.uid)">{{leave.ltype}}</td>
+                  			<td *ngIf="(leave.uid==loginService.user.uid)">{{leave.ltime}}</td>
+                  			<td *ngIf="(leave.uid==loginService.user.uid)">{{leave.atime}}</td>
+                  			<td *ngIf="(leave.uid==loginService.user.uid)">{{leave.lstatus}}</td>
+                  			<td *ngIf="(leave.uid==loginService.user.uid)">{{leave.desc}}</td>
+                        <td *ngIf="(leave.uid==loginService.user.uid)"></td>
+                       <!--  *ngIf="(leave.uid==loginService.user.uid)" -->
+                    </tr>
+                </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
 
+</div>
 </div>
 

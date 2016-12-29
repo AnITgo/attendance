@@ -1,4 +1,4 @@
-
+<div *ngIf="loginService.hasLogin">
 	<div class="navbar navbar-inverse">
 		<div class="container">
 			<div class="navbar-header">
@@ -7,24 +7,26 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">管理员</a>
+				<a class="navbar-brand" href="#">经理</a>
 			</div>
 			<div class="navbar-collapse collapse navbar-inverse-collapse">
 				<ul class="nav navbar-nav">
-					<li id="main_page_li"><a routerLink="/admin-info" routerLinkActive="active">主页</a></li>
-					<li id="staff_li"><a routerLink="/admin-add-vacationtype" routerLinkActive="active">添加请假类型</a></li>
-					<li id="vacation_li"><a routerLink="/admin-check-vacation" routerLinkActive="active">审查请假</a></li>
+					<li id="main_page_li"><a routerLink="/admin-check-vacation" routerLinkActive="active">主页</a></li>
+					<!-- <li id="staff_li"><a routerLink="/admin-add-vacationtype" routerLinkActive="active">添加请假类型</a></li> -->
+					<li id="vacation_li"><a routerLink="/admin-check-vacation" routerLinkActive="active">请假管理</a></li>
 					
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 					
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">用戶 <b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{loginService.userName}} <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<!-- <li><a href="#">修改密码</a></li> -->
-							<li><a href="<?php echo site_url('admin_home/change_password') ?>">修改密码</a></li>
-							<li><a href="<?php echo site_url('admin_home/logout') ?>">退出</a></li>
+							<!-- <li><a href="">修改密码</a></li> -->
+							<li>
+				                <a href="javascript:void(0);" (click)="doLogout()">退出</a>
+				            </li>
 						</ul>
 					</li>
 
@@ -32,13 +34,6 @@
 			</div>
 		</div>
 	</div>
-
-<div class="container">
-	<router-outlet></router-outlet>
-	<app-admin-info></app-admin-info>
-	<!-- <app-check-vacation></app-check-vacation> -->
-	<!-- <app-check-vacation-info></app-check-vacation-info> -->
-	<!-- <app-add-vacation-type></app-add-vacation-type> -->
-	
 </div>
+
 

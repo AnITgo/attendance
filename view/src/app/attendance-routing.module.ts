@@ -11,7 +11,9 @@ import { AdminInfoComponent } from './admin/admin-info/admin-info.component';
 import { AdminAddVatypeComponent } from './admin/admin-add-vatype/admin-add-vatype.component';
 import { AdminCheckVacationComponent } from './admin/admin-check-vacation/admin-check-vacation.component';
 import { AdminCheckVainfoComponent } from './admin/admin-check-vainfo/admin-check-vainfo.component';
-
+import { AddUserComponent } from './superadmin/add-user/add-user.component';
+import { EditUserComponent } from './superadmin/edit-user/edit-user.component';
+import { ListUsersComponent } from './superadmin/list-users/list-users.component';
 
 const routes:Routes=[
 
@@ -24,8 +26,11 @@ const routes:Routes=[
 {path:'admin-info',component:AdminInfoComponent},
 {path:'admin-add-vacationtype',component:AdminAddVatypeComponent},
 {path:'admin-check-vacation',component:AdminCheckVacationComponent},
-{path:'admin-check-vacation-vacationinfo',component:AdminCheckVainfoComponent}
-
+{path:'admin-check-vacation-vacationinfo',component:AdminCheckVainfoComponent},
+//{ path: 'check-vainfo', component: AdminCheckVainfoComponent },
+{path: 'add-user', component: AddUserComponent },
+{path: 'list-users', component: ListUsersComponent },
+{path: 'edit-user', component: EditUserComponent }
 ];
 
 @NgModule({

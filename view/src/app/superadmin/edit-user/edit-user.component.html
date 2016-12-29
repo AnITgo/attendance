@@ -1,0 +1,84 @@
+<div *ngIf="loginService.hasLogin">
+<div class="col-md-8">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">修改用户</h3>
+		</div>
+		<div class="panel-body">
+			<form id="user_edit_form" method="post" class="form-horizontal"  enctype="multipart/form-data">
+				<fieldset>
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-4 control-label">工号:</label>
+						<div class="col-lg-8 col-xs-8">
+							<input class="form-control" [(ngModel)]="edit_usermodel.uid" id="uid" name="uid"/>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-4 control-label">员工姓名:</label>
+						<div class="col-lg-8 col-xs-8">
+							<input class="form-control" [(ngModel)]="edit_usermodel.uname" id="uname" name="uname"/>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-4 control-label">登陆密码:</label>
+						<div class="col-lg-8 col-xs-8">
+							<input class="form-control" [(ngModel)]="edit_usermodel.password" id="password" name="password"/>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-4 control-label">职位:</label>
+						<div class="col-lg-8 col-xs-8">
+							<input class="form-control" [(ngModel)]="edit_usermodel.userrole" id="userrole" name="userrole"/>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-4 control-label">年假时长:</label>
+						<div class="col-lg-8 col-xs-8">
+							<input class="form-control" [(ngModel)]="edit_usermodel.uvacation" id="uvacation" name="uvacation"/>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-4 control-label">部门:</label>
+						<div class="col-lg-8 col-xs-8">
+							<input class="form-control" [(ngModel)]="edit_usermodel.department" id="department" name="department"/>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-4 control-label">基础工资:</label>
+						<div class="col-lg-8 col-xs-8">
+							<input class="form-control" [(ngModel)]="edit_usermodel.base_wage" id="base_wage" name="base_wage"/>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-4 control-label">电子邮件:</label>
+						<div class="col-lg-8 col-xs-8">
+							<input class="form-control" [(ngModel)]="edit_usermodel.email" id="email" name="email"/>
+						</div>
+
+					</div>
+					
+					<div class="form-group">
+						<div class="col-lg-10 col-lg-offset-2 col-xs-4 col-xs-offset-4">
+							<button type="submit" (click)="editUser(edit_usermodel)" class="btn btn-primary">提交</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+</div>

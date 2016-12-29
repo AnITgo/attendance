@@ -1,67 +1,157 @@
-<div class="col-md-8">
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h3 class="panel-title">申请假期</h3>
-		</div>
-		<div class="panel-body">
-			
-			<form id="vacation_apply_form" method="post" class="form-horizontal"  enctype="multipart/form-data" action="" >
-				<fieldset>
-					<input type="text" id="staff_id" name="staff_id" value="<?=$staff['id']?>" class="hidden">
-					<div class="form-group">
-						<label class="col-lg-2 col-xs-4 control-label">请假类型:</label>
-						<div class="col-lg-8 col-xs-8">
-							<select class="form-control" name="vacation_type_id" id="vacation_type_id">
-								<option value="0">自定义</option>
-								<?php foreach ($vacation_types as $item) :?>
-									<option value="<?=$item['id']?>">
-										<?=$item['name']?>&nbsp&nbsp建议天数(<?=$item['days']?>天)&nbsp工资倍数(<?=$item['salary_times']?>倍)
-									</option>
-								<?php endforeach; ?>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-xs-4 control-label">工资计算（倍）:</label>
-						<div class="col-lg-8 col-xs-8">
-							<input class="form-control" id="salary_times" name="salary_times"  placeholder="自定义假期类型时填写"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-xs-4 control-label">开始日期:</label>
-						<div class="col-lg-8 col-xs-8">
-							<div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-								<input class="form-control" id="start_date" name="start_date" size="16" type="text"readonly>
-								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+<div *ngIf="loginService.hasLogin">
+	<div class="col-md-8">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">申请假期</h3>
+			</div>
+			<div class="panel-body">
+				
+				<form id="vacation_apply_form" method="post" class="form-horizontal"  enctype="multipart/form-data" action="" >
+					<fieldset>
+						
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">工号:</label>
+							<div class="col-lg-8 col-xs-8">
+								<input class="form-control" id="uid" [(ngModel)]="leavemodel.uid" name="uid"  placeholder="{{loginService.user.uid}}" readonly="readonly" value="{{loginService.user.uid}}">
 							</div>
-						</div>               
-					</div>
-					
-					<div class="form-group">
-						<label class="col-lg-2 col-xs-4 control-label">结束日期:</label>
-						<div class="col-lg-8 col-xs-8">
-							<div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-								<input class="form-control" id="end_date" name="end_date" size="16" type="text"readonly>
-								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							<!-- <input class="form-control" id="uid" [(ngModel)]="leavemodel.userrole" name="uid" hidden="hidden" value="{{loginService.user.userrole}}">
+							<input class="form-control" id="uid" [(ngModel)]="leavemodel.department" name="uid" hidden="hidden" value="{{loginService.user.department}}">
+							<input class="form-control" id="uid" [(ngModel)]="leavemodel.base_wage" name="uid" hidden="hidden" value="{{loginService.user.base_wage}}">
+							<input class="form-control" id="uid" [(ngModel)]="leavemodel.email" name="uid" hidden="hidden" value="{{loginService.user.email}}"> -->
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">姓名:</label>
+							<div class="col-lg-8 col-xs-8">
+								<input class="form-control" id="salary_times" name="salary_times"  placeholder="{{loginService.user.uname}}" readonly="readonly">
 							</div>
-						</div>               
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 control-label">备注:</label>
-						<div class="col-lg-8">
-							<input class="form-control" id="remark" name="remark"/>
 						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="col-lg-10 col-lg-offset-2">
-							<button type="submit" class="btn btn-primary">提交</button>
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">请假类型:</label>
+							<div class="col-lg-8 col-xs-8">
+								<select class="form-control" [(ngModel)]="leavemodel.ltype" name="ltype" id="ltype">
+									<option value="其他">其他</option>
+									<option value="事假">事假</option>
+									<option value="病假">病假</option>
+									<option value="婚假">婚假</option>
+									<option value="产假">产假</option>
+								</select>
+							</div>
 						</div>
-					</div>
-				</fieldset>
-			</form>
+
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">开始日期:</label>
+							<div class="col-lg-8 col-xs-8">
+								<input class="form-control" id="ltime"  [(ngModel)]="leavemodel.ltime" placeholder="yyyymmdd" name="ltime">
+								<!-- <datepicker  [showWeeks]="true" ></datepicker> -->
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">结束日期:</label>
+							<div class="col-lg-8 col-xs-8">
+								<input class="form-control"  id="atime" [(ngModel)]="leavemodel.atime" placeholder="yyyymmdd" name="atime">
+								<!-- <datepicker  [showWeeks]="true" ></datepicker> -->
+							</div>
+						</div>
+
+						
+						<div class="form-group">
+							<label class="col-lg-2 control-label">备注:</label>
+							<div class="col-lg-8">
+								<input class="form-control" [(ngModel)]="leavemodel.desc" id="desc" name="desc"/>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+								<button type="submit" (click)="onLeaveSubmit()" class="btn btn-primary">提交</button>
+							</div>
+						</div>
+						
+
+					</fieldset>
+				</form>
+
+						<div *ngIf="vacationService.addleaveMsg!='null'">
+							<div class="form-group row">
+								{{vacationService.addleaveMsg}}
+								<div class="col-lg-10 col-lg-offset-2 col-xs-4 col-xs-offset-4">
+									<button type="submit" (click)="goBack()" class="btn btn-primary">返回</button>
+									<a href="mailto:" type="button">发送邮件</a>
+								</div>
+							</div>
+						</div>
+			</div>
 		</div>
 	</div>
 </div>
+
+<link href="./assets/js/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="./assets/js/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+	$('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+</script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+	$('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+</script>

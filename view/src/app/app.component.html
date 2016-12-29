@@ -1,3 +1,41 @@
-<app-login></app-login> 
+<!-- <div *ngIf="loginService.hasLogin"> -->
+<span [ngSwitch]="loginService.userRole">
+	<span *ngSwitchCase="'员工'">
+		<app-staff></app-staff>
+	</span>	
+
+	<span *ngSwitchCase="'管理员'">
+		<app-superadmin></app-superadmin>
+	</span>
+
+	<span *ngSwitchDefault>
+		<app-admin></app-admin>
+	</span>
+
+</span>
+
+
+<!-- </div> -->
+
+	<div class="container">
+	<!-- <app-staff-info></app-staff-info> -->
+	<div *ngIf="loginService.hasLogin">
+		<div *ngIf="(loginService.userRole!='管理员')">
+			<app-staff-info></app-staff-info>
+		</div>
+	</div>
+	<router-outlet></router-outlet>
+	<!-- <app-staff-vacation></app-staff-vacation> -->
+	<!-- <app-my-vacation></app-my-vacation> -->
+	<!-- <app-staff-checkin></app-staff-checkin> -->
+	<!-- <app-change-password></app-change-password> -->
+	</div>
+
+
+
+
+
+<div *ngIf="!loginService.hasLogin"><app-login></app-login></div>
+
 <!-- <app-staff></app-staff>  -->
 <!-- <app-admin></app-admin> -->

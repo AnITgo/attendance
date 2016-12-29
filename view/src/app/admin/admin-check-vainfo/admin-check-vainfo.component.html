@@ -1,3 +1,102 @@
-<p>
-  admin-check-vainfo works!
-</p>
+<div *ngIf="loginService.hasLogin">
+<div class="col-md-8">
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">请假申请详情</h3>
+		</div>
+		<div class="panel-body">
+			<fieldset>
+				<div *ngFor="let leave of leaves">
+					<div class="form-group row">
+						<label class="col-lg-3 col-xs-5 control-label">申请人工号:</label>
+						<div class="col-lg-9 col-xs-7">
+							<p class="text-primary question-content">{{leave.uid}}</p>
+							</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-xs-5 control-label">申请人姓名:</label>
+						<div class="col-lg-9 col-xs-7">
+							<p class="text-primary question-content">{{leave.uname}}</p>
+							</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-xs-5 control-label">申请人部门:</label>
+						<div class="col-lg-9 col-xs-7">
+							<p class="text-primary question-content">{{leave.department}}</p>
+							</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-xs-5 control-label">请假类型:</label>
+						<div class="col-lg-9 col-xs-7">
+							<p class="question-content">{{leave.ltype}}</p>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-lg-3 col-xs-5 control-label">开始日期:</label>
+							<div class="col-lg-9 col-xs-7">
+							 	<p class="text-primary question-content">{{leave.ltime}}</p>	
+							</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-xs-5 control-label">结束日期:</label>
+						<div class="col-lg-9 col-xs-7">
+							<p class="text-primary question-content">{{leave.atime}}</p>
+							</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-xs-5 control-label">基本工资</label>
+						<div class="col-lg-9 col-xs-7">
+							<p class="text-primary question-content">{{leave.base_wage}}</p>
+							</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-xs-5 control-label">申请人备注:</label>
+						<div class="col-lg-9 col-xs-7">
+							<p class="text-primary question-content">{{leave.desc}}</p>
+							</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-xs-5 control-label">审核状态:</label>
+						<div class="col-lg-9 col-xs-7">
+							<p class="text-primary question-content">{{leave.lstatus}}</p>
+							</div>
+					</div>
+					
+					<div *ngIf="vacationService.checkServiceMsg!='null'">
+                    	<div class="form-group row" >
+                            <div class="col-lg-12  login-textbox">
+                                
+								    {{vacationService.checkServiceMsg}}
+								
+                            </div>
+                    	</div>
+                	</div>
+					
+					<div class="form-group row">
+						<div class="col-lg-10 col-lg-offset-2 col-xs-4 col-xs-offset-4">
+							<button type="submit" (click)="goBack()" class="btn btn-primary">返回</button>
+						</div>
+						<span [ngSwitch]="loginService.userRole">
+							<span *ngSwitchCase="'部门经理'">
+								<!-- <div class="col-lg-10 col-lg-offset-2 col-xs-4 col-xs-offset-4"> -->
+									<button type="submit" (click)="checkByDepManer(leave)" class="btn btn-primary">部门经理审核通过</button>
+								<!-- </div> -->
+							</span>	
+
+							<span *ngSwitchCase="'总经理'">
+								<div *ngIf = "(leave.lstatus=='待总经理审批')">
+									<!-- <div class="col-lg-10 col-lg-offset-2 col-xs-4 col-xs-offset-4"> -->
+									<button type="submit" (click)="checkByFullManer(leave)" class="btn btn-primary">总经理审核通过</button>
+									<!-- </div> -->
+								</div>
+							</span>
+						</span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	</div>
+</div>
